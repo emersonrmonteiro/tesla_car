@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class HomeController extends ChangeNotifier {
+  int selectedButtomTab = 0;
+
+  void onButtomNavigationTabChange(int index) {
+    selectedButtomTab = index;
+    notifyListeners();
+  }
+
   bool isRightDoorLock = true;
   bool isLeftDoorLock = true;
   bool isBonnetLock = true;
