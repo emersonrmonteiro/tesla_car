@@ -32,4 +32,11 @@ class HomeController extends ChangeNotifier {
     isTrunkLock = !isTrunkLock;
     notifyListeners();
   }
+
+  bool isCoolSelected = true;
+
+  void updateCoolselectedTab() {
+    isCoolSelected = !isCoolSelected;
+    notifyListeners();
+  }
 }
