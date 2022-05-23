@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constrains.dart';
+import '../../models/temp_details_model.dart';
 import '../home_controller.dart';
 import 'temp_button.dart';
 
@@ -8,10 +9,16 @@ class TempDetails extends StatelessWidget {
   const TempDetails({
     Key? key,
     required HomeController controller,
+    required this.tempDetails,
+    required this.pressUp,
+    required this.pressDown,
   })  : _controller = controller,
         super(key: key);
 
+  final VoidCallback pressUp;
+  final VoidCallback pressDown;
   final HomeController _controller;
+  final TempDetailsModel tempDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -46,19 +53,19 @@ class TempDetails extends StatelessWidget {
             children: [
               IconButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {},
+                onPressed: pressUp,
                 icon: const Icon(
                   Icons.arrow_drop_up,
                   size: 48,
                 ),
               ),
-              const Text(
-                '29' '\u2103',
-                style: TextStyle(fontSize: 86),
+              Text(
+                '${tempDetails.temp}\u2103',
+                style: const TextStyle(fontSize: 86),
               ),
               IconButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {},
+                onPressed: pressDown,
                 icon: const Icon(
                   Icons.arrow_drop_down,
                   size: 48,
@@ -78,7 +85,7 @@ class TempDetails extends StatelessWidget {
                     'Inside'.toUpperCase(),
                   ),
                   Text(
-                    '20' '\u2103',
+                    '${tempDetails.inside}\u2103',
                     style: Theme.of(context).textTheme.headline5,
                   ),
                 ],
@@ -94,7 +101,7 @@ class TempDetails extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '35' '\u2103',
+                    '${tempDetails.outside}\u2103',
                     style: Theme.of(context).textTheme.headline5!.copyWith(
                           color: Colors.white54,
                         ),
